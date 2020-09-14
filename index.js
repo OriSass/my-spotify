@@ -34,7 +34,7 @@ app.get('/top_:tableName', (req,res)=>{
 app.get('/:tableName/:id', (req,res)=>{
     let table = req.params.tableName
     let id = req.params.id
-    mysqlCon.query(`SELECT * FROM ${table} WHERE ${table}.id = ${id};`,(error, results, fields)=> {
+    mysqlCon.query(`SELECT * FROM ${table}s WHERE ${table}.id = ${id};`,(error, results, fields)=> {
         if (error) {
             res.send (error.message);
             throw error
@@ -44,26 +44,24 @@ app.get('/:tableName/:id', (req,res)=>{
 })
 
 app.post('/:tableName', (req,res) => {
-    let table = req.params.tableName
-    let newTable = table === 'playlist'? table:`${table}s`;
-    let data = req.body
-    console.log(data)
-    mysqlCon.query(`INSERT INTO ${newTable} SET ?;`,data,(error, results, fields)=> {
+    let table = req.params.tableName;
+    let data = req.body;
+    console.log(data);
+    mysqlCon.query(`INSERT INTO ${table}s SET ?;`,data,(error, results, fields)=> {
         if (error) {
             res.send (error.message);
-            throw error
+            throw error;
         };
-        res.send(results)
+        res.send(results);
     }) 
 })
 
 app.put('/:tableName/:id', (req,res) => {
     let id = req.params.id
     let table = req.params.tableName
-    let newTable = table === 'playlist'? table:`${table}s`;
     let data = req.body
     console.log(data)
-    mysqlCon.query(`UPDATE ${newTable} SET ? WHERE ${newTable}.id=${id};`,data,(error, results, fields)=> {
+    mysqlCon.query(`UPDATE ${table}s SET ? WHERE ${table}s.id=${id};`,data,(error, results, fields)=> {
         if (error) {
             res.send (error.message);
             throw error
@@ -75,8 +73,7 @@ app.put('/:tableName/:id', (req,res) => {
 app.delete('/:tableName/:id', (req,res) => {
     let id = req.params.id
     let table = req.params.tableName
-    let newTable = table === 'playlist'? table:`${table}s`;
-    mysqlCon.query(`DELETE FROM ${newTable} WHERE ${newTable}.id=${id};`,(error, results, fields)=> {
+    mysqlCon.query(`DELETE FROM ${table}s WHERE ${table}s.id=${id};`,(error, results, fields)=> {
         if (error) {
             res.send (error.message);
             throw error

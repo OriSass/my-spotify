@@ -20,14 +20,22 @@ mysqlCon.connect(err => {
 });
 
 app.get('/top_:tableName', (req,res)=>{
-    let newTable = req.params.tableName
-    console.log(newTable)
-    mysqlCon.query(`SELECT * FROM ${newTable} LIMIT 20;`,(error, results, fields)=> {
+    let table = req.params.tableName;
+    let sql = `SELECT * FROM ${table} LIMIT 20;`;
+    if(table === 'songs'){
+        sql = 'CALL get_top_songs()';
+    }
+    if(table === 'artists'){
+        sql = 'CALL get_top_artists()';
+    }
+    //console.log('retreiving data from ' + table);
+    mysqlCon.query(sql ,(error, results, fields)=> {
         if (error) {
             res.send (error.message);
             throw error
         };
-        res.send(results)
+        //console.log('results are: \n' + results[0]);
+        res.send(results[0]);
     }) 
 })
 
@@ -46,7 +54,7 @@ app.get('/:tableName/:id', (req,res)=>{
 app.post('/:tableName', (req,res) => {
     let table = req.params.tableName;
     let data = req.body;
-    console.log(data);
+    //console.log(data);
     mysqlCon.query(`INSERT INTO ${table}s SET ?;`,data,(error, results, fields)=> {
         if (error) {
             res.send (error.message);
@@ -60,7 +68,7 @@ app.put('/:tableName/:id', (req,res) => {
     let id = req.params.id
     let table = req.params.tableName
     let data = req.body
-    console.log(data)
+    //console.log(data)
     mysqlCon.query(`UPDATE ${table}s SET ? WHERE ${table}s.id=${id};`,data,(error, results, fields)=> {
         if (error) {
             res.send (error.message);
@@ -82,4 +90,4 @@ app.delete('/:tableName/:id', (req,res) => {
     })
 })
 
-app.listen(3000);
+app.listen(8080);

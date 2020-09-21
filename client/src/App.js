@@ -2,25 +2,15 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import NavBar from './components/NavBar';
 import Homepage from './components/Homepage';
-import Carousel from 'react-elastic-carousel';
-import Card from './components/Card';
 import Playlist from './components/Playlist';
 import Album from './components/Album';
 import Artist from './components/Artist';
 import Song from './components/Song';
 
 function App() {
-  
-  const breakPoints = [
-    {width: 1, itemsToShow:1},
-    {width: 500, itemsToShow:2},
-    {width: 768, itemsToShow:3},
-    {width: 1200, itemsToShow:4}    
-  ]
-  
+    
   return (
     <div className="App">
-    
     <Router>
       <NavBar />
       <Switch>
@@ -29,7 +19,11 @@ function App() {
         <Route path="/album/:id" exact component={Album}/>
         <Route path="/artist/:id" exact component={Artist}/>
         <Route path="/song/:id" exact component={Song}/>
-
+        <Route render={({match, location, history}) => (
+          <div key='404'>
+              ERROR 404, PAGE NOT FOUND!??!
+          </div>
+        )} />
       </Switch>
     </Router>
     </div>

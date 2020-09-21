@@ -18,6 +18,7 @@ mysqlCon.connect(err => {
     if (err) throw err;
     console.log("Connected!");
 });
+
 app.get('/song/:id', (request,response) =>{
     let songId = request.params.id;
     let sql = `call music.get_song(${songId})`;
@@ -90,17 +91,17 @@ app.get('/top_:tableName', (request,response)=>{
     }) 
 });
 
-app.get('/:tableName/:id', (request,response)=>{
-    let table = request.params.tableName
-    let id = request.params.id
-    mysqlCon.query(`SELECT * FROM ${table}s WHERE ${table}.id = ${id};`,(error, results, fields)=> {
-        if (error) {
-            response.send (error.message);
-            throw error
-        };
-        response.send(results)
-    }) 
-})
+// app.get('/:tableName/:id', (request,response)=>{
+//     let table = request.params.tableName
+//     let id = request.params.id
+//     mysqlCon.query(`SELECT * FROM ${table}s WHERE ${table}.id = ${id};`,(error, results, fields)=> {
+//         if (error) {
+//             response.send (error.message);
+//             throw error
+//         };
+//         response.send(results)
+//     }) 
+// })
 
 app.post('/:tableName', (request,response) => {
     let table = request.params.tableName;

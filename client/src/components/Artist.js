@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import "../App.css";
 
 function Artist({ match }) {
@@ -30,7 +31,14 @@ function Artist({ match }) {
                {albums.map(album =><li key={album.name}>{album.name}</li>)}
              </ul>
              <p>Selected songs:</p>
-             {songs.map((song) => <p key={song.id}>{song.title}</p>)}
+             
+             {songs.map((song) => { return (
+               <p key={song.id}>
+                  <Link to={`/song/${song.id}?artist=${match.params.id}`}>
+                      {song.title}
+                  </Link>
+               </p>)}
+             )}
          </div>
        </div>
     )}

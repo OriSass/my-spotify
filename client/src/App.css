@@ -77,3 +77,8 @@ p{
   padding-top: 20px;
   margin-top: 30px;
 }
+
+.main-container{
+  display: flex;
+  flex-direction: row;
+}

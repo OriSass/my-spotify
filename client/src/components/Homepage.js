@@ -31,12 +31,11 @@ function Homepage() {
     }, []);
   return ( 
     <div className='up-space' key="content">
-
-    {songs.length > 0 && <MyCarousel dataType="songs" data={songs}/> }
-    {artists.length > 0 && <MyCarousel dataType="artists" data={artists}/> }
-    {albums.length > 0 && <MyCarousel dataType="albums" data={albums}/> }
-    {playlists.length > 0 &&  <MyCarousel dataType="playlists" data={playlists}/> } 
-      </div>
+      {songs.length > 0 && <MyCarousel dataType="songs" data={songs}/> }
+      {artists.length > 0 && <MyCarousel dataType="artists" data={artists}/> }
+      {albums.length > 0 && <MyCarousel dataType="albums" data={albums}/> }
+      {playlists.length > 0 &&  <MyCarousel dataType="playlists" data={playlists}/> } 
+    </div>
         
       
   );

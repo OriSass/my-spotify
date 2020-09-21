@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import "../App.css";
 import { Link } from 'react-router-dom';
 function Card({dataType, data}) {
@@ -7,7 +7,7 @@ function Card({dataType, data}) {
     return (
       <Link to={`/${dataType}/${data.id}`}>
         <div key={data.id} className="card">
-            <img src={data.img} height="100px" width="100px"/>
+            <img alt="" src={data.img} height="100px" width="100px"/>
             <p>{data.name}</p>
             {dataType === "song" && renderSong()}
             {dataType === "artist" && renderArtist()}

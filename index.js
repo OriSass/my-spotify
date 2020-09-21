@@ -70,17 +70,15 @@ app.get('/playlist/:id', (request,response) =>{
 app.get('/top_:tableName', (request,response)=>{
     let table = request.params.tableName;
     let sql = `SELECT * FROM ${table} LIMIT 20;`;
-    if(table === 'songs'){
-        sql = 'CALL get_top_songs()';
-    }
-    if(table === 'artists'){
-        sql = 'CALL get_top_artists()';
-    }
-    if(table === 'albums'){
-        sql = 'CALL get_top_albums()';
-    }
-    if(table === 'playlists'){
-        sql = 'CALL get_top_playlists()';
+    switch (table) {
+        case 'songs': sql = "CALL get_top_songs()";
+            break;
+        case 'artists': sql = "CALL get_top_artists()";
+          break;
+        case 'albums': sql = "CALL get_top_albums()";
+          break;
+        case 'playlists': sql = "CALL get_top_playlists()";
+          break;
     }
     mysqlCon.query(sql ,(error, results, fields)=> {
         if (error) {
@@ -94,6 +92,7 @@ app.get('/top_:tableName', (request,response)=>{
 // app.get('/:tableName/:id', (request,response)=>{
 //     let table = request.params.tableName
 //     let id = request.params.id
+//     table === ""
 //     mysqlCon.query(`SELECT * FROM ${table}s WHERE ${table}.id = ${id};`,(error, results, fields)=> {
 //         if (error) {
 //             response.send (error.message);

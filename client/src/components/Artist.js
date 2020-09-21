@@ -9,10 +9,9 @@ function Artist({ match }) {
     const [songs, setSongs] = useState([]);
     
     const fetchData = async () => {
-        let id = match.params.id; ///album/:id
+        let id = match.params.id; 
         let data = await fetch(`/artist/${id}`);
         let dataJS = await data.json();
-        console.log(dataJS);
         setArtist(dataJS[0][0]);
         setAlbums(Array.isArray(dataJS[2]) ? dataJS[2] : [dataJS[2]]);
         setSongs(dataJS[4]);

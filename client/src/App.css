@@ -32,6 +32,11 @@
 .App-link {
   color: #61dafb;
 }
+a { text-decoration: none; color:#000; }
+a:visited { text-decoration: none; color:white; }
+a:hover { text-decoration: none; color:white; }
+a:focus { text-decoration: none; color:white; }
+a:hover { text-decoration: none; color:white; }
 
 @keyframes App-logo-spin {
   from {
@@ -81,4 +86,7 @@ p{
 .main-container{
   display: flex;
   flex-direction: row;
+}
+li{
+  list-style: none;
 }

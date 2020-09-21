@@ -11,8 +11,9 @@ function Playlist({ match }) {
         let id = match.params.id;
         let playlistData = await fetch(`/playlist/${id}`);
         let playlistJS = await playlistData.json();
-        setPlaylist(playlistJS[0]);
-        setSongs(playlistJS);
+        console.log(playlistJS);
+        setPlaylist(playlistJS[0][0]);
+        setSongs(playlistJS[0]);
     } 
 
     useEffect(() => {

@@ -11,6 +11,7 @@ function Homepage() {
     const fetchData = async () => {
         let songsData = await fetch('/top_songs')
         let songsJS = await songsData.json();
+        console.log(songsJS);
         let artistsData = await fetch('/top_artists');
         let artistsJS = await artistsData.json();
         let albumsData = await fetch('/top_albums');

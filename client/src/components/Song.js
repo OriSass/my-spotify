@@ -26,7 +26,7 @@ function Song({ match }) {
                    clipboard-write; encrypted-media; gyroscope;
                    picture-in-picture" allowFullScreen></iframe>
                    <br></br>
-           <img src={song.album_img} height="100px" width="100px"/>
+           <img src={song.img} height="100px" width="100px"/>
              <p>length: {Math.floor(song.length / 60)} : {song.length % 60}</p>
              <p>Lyrics:</p>
              <p>{song.lyrics}</p>

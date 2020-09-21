@@ -18,9 +18,41 @@ mysqlCon.connect(err => {
     if (err) throw err;
     console.log("Connected!");
 });
-
-app.get('/top_:tableName', (req,res)=>{
-    let table = req.params.tableName;
+app.get('/album/:id', (request,response) =>{
+    let albumId = request.params.id;
+    let sql1 = `CALL get_album(${albumId})`;
+    let sql2 = `CALL get_album_artists(${albumId})`;
+    let resultsArr = [];
+    mysqlCon.query(sql1 ,(error, result1, fields)=> {
+        if (error) {
+            response.send (error.message);
+            throw error
+        };
+        resultsArr.push(result1[0]);
+    })
+    mysqlCon.query(sql2 ,(error, result2, fields)=> {
+        if (error) {
+            response.send (error.message);
+            throw error
+        };
+        resultsArr.push(result2[0]);
+    })
+    response.send(resultsArr);
+})
+// you can divide it to 2 procedures so data doesnt duplicate
+app.get('/playlist/:id', (request,response) =>{
+    let playlistId = request.params.id;
+    let sql = `CALL get_playlist(${playlistId})`;
+    mysqlCon.query(sql ,(error, results, fields)=> {
+        if (error) {
+            response.send (error.message);
+            throw error
+        };
+        response.send(results[0]);
+    }) 
+});
+app.get('/top_:tableName', (request,response)=>{
+    let table = request.params.tableName;
     let sql = `SELECT * FROM ${table} LIMIT 20;`;
     if(table === 'songs'){
         sql = 'CALL get_top_songs()';
@@ -28,65 +60,68 @@ app.get('/top_:tableName', (req,res)=>{
     if(table === 'artists'){
         sql = 'CALL get_top_artists()';
     }
-    //console.log('retreiving data from ' + table);
+    if(table === 'albums'){
+        sql = 'CALL get_top_albums()';
+    }
+    if(table === 'playlists'){
+        sql = 'CALL get_top_playlists()';
+    }
     mysqlCon.query(sql ,(error, results, fields)=> {
         if (error) {
-            res.send (error.message);
+            response.send (error.message);
             throw error
         };
-        //console.log('results are: \n' + results[0]);
-        res.send(results[0]);
+        response.send(results[0]);
     }) 
-})
+});
 
-app.get('/:tableName/:id', (req,res)=>{
-    let table = req.params.tableName
-    let id = req.params.id
+app.get('/:tableName/:id', (request,response)=>{
+    let table = request.params.tableName
+    let id = request.params.id
     mysqlCon.query(`SELECT * FROM ${table}s WHERE ${table}.id = ${id};`,(error, results, fields)=> {
         if (error) {
-            res.send (error.message);
+            response.send (error.message);
             throw error
         };
-        res.send(results)
+        response.send(results)
     }) 
 })
 
-app.post('/:tableName', (req,res) => {
-    let table = req.params.tableName;
-    let data = req.body;
+app.post('/:tableName', (request,response) => {
+    let table = request.params.tableName;
+    let data = request.body;
     //console.log(data);
     mysqlCon.query(`INSERT INTO ${table}s SET ?;`,data,(error, results, fields)=> {
         if (error) {
-            res.send (error.message);
+            response.send (error.message);
             throw error;
         };
-        res.send(results);
+        response.send(results);
     }) 
 })
 
-app.put('/:tableName/:id', (req,res) => {
-    let id = req.params.id
-    let table = req.params.tableName
-    let data = req.body
-    //console.log(data)
+app.put('/:tableName/:id', (request,response) => {
+    let id = request.params.id;
+    let table = request.params.tableName;
+    let data = request.body;
     mysqlCon.query(`UPDATE ${table}s SET ? WHERE ${table}s.id=${id};`,data,(error, results, fields)=> {
         if (error) {
-            res.send (error.message);
+            response.send (error.message);
             throw error
         };
-        res.send(results)
+        response.send(results)
     })     
 })
 
-app.delete('/:tableName/:id', (req,res) => {
-    let id = req.params.id
-    let table = req.params.tableName
+app.delete('/:tableName/:id', (request,response) => {
+    let id = request.params.id;
+    let table = request.params.tableName;
     mysqlCon.query(`DELETE FROM ${table}s WHERE ${table}s.id=${id};`,(error, results, fields)=> {
         if (error) {
             res.send (error.message);
             throw error
         };
-        res.send(results)
+        response.send(results)
     })
 })
 

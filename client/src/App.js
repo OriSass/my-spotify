@@ -4,6 +4,7 @@ import NavBar from './components/NavBar';
 import Homepage from './components/Homepage';
 import Carousel from 'react-elastic-carousel';
 import Card from './components/Card';
+import Playlist from './components/Playlist';
 function App() {
   
   const breakPoints = [
@@ -20,6 +21,9 @@ function App() {
       <NavBar />
       <Switch>
         <Route path="/" exact component={Homepage}/>
+        <Route path="/playlist/:id" exact component={Playlist}/>
+        <Route path="/album/:id" exact component={Playlist}/>
+
       </Switch>
     </Router>
     </div>

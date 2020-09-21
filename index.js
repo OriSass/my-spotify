@@ -18,26 +18,41 @@ mysqlCon.connect(err => {
     if (err) throw err;
     console.log("Connected!");
 });
+app.get('/song/:id', (request,response) =>{
+    let songId = request.params.id;
+    let sql = `call music.get_song(${songId})`;
+    mysqlCon.query(sql ,(error, result, fields)=> {
+        if (error) {
+            response.send (error.message);
+            throw error
+        }
+        response.send(result);
+    });   
+})
+app.get('/artist/:id', (request,response) =>{
+    let artistId = request.params.id;
+    let sql1 = `call music.get_artist(${artistId})`;
+    let sql2 = `CALL music.get_artist_albums(${artistId})`;
+    let sql3 = `CALL music.get_artist_selected_songs(${artistId})`;
+    mysqlCon.query(`${sql1}; ${sql2}; ${sql3}` ,(error, result, fields)=> {
+        if (error) {
+            response.send (error.message);
+            throw error
+        }
+        response.send(result);
+    });   
+})
 app.get('/album/:id', (request,response) =>{
     let albumId = request.params.id;
     let sql1 = `CALL get_album(${albumId})`;
     let sql2 = `CALL get_album_artists(${albumId})`;
-    let resultsArr = [];
-    mysqlCon.query(sql1 ,(error, result1, fields)=> {
+    mysqlCon.query(`${sql1}; ${sql2}` ,(error, result, fields)=> {
         if (error) {
             response.send (error.message);
             throw error
-        };
-        resultsArr.push(result1[0]);
-    })
-    mysqlCon.query(sql2 ,(error, result2, fields)=> {
-        if (error) {
-            response.send (error.message);
-            throw error
-        };
-        resultsArr.push(result2[0]);
-    })
-    response.send(resultsArr);
+        }
+        response.send(result);
+    });   
 })
 // you can divide it to 2 procedures so data doesnt duplicate
 app.get('/playlist/:id', (request,response) =>{

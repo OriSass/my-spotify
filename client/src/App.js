@@ -5,6 +5,10 @@ import Homepage from './components/Homepage';
 import Carousel from 'react-elastic-carousel';
 import Card from './components/Card';
 import Playlist from './components/Playlist';
+import Album from './components/Album';
+import Artist from './components/Artist';
+import Song from './components/Song';
+
 function App() {
   
   const breakPoints = [
@@ -22,7 +26,9 @@ function App() {
       <Switch>
         <Route path="/" exact component={Homepage}/>
         <Route path="/playlist/:id" exact component={Playlist}/>
-        <Route path="/album/:id" exact component={Playlist}/>
+        <Route path="/album/:id" exact component={Album}/>
+        <Route path="/artist/:id" exact component={Artist}/>
+        <Route path="/song/:id" exact component={Song}/>
 
       </Switch>
     </Router>

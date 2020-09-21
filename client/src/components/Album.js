@@ -1,32 +1,36 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import {Link} from 'react-router-dom';
 import "../App.css";
 
 function Album({ match }) {
 
-    const [playlist, setPlaylist] = useState();
+    const [album, setAlbum] = useState();
     const [songs, setSongs] = useState([]);
+    const [artists, setArtists] = useState([]);
     
     const fetchData = async () => {
-        let id = match.params.id;
-        let playlistData = await fetch(`/playlist/${id}`);
-        let playlistJS = await playlistData.json();
-        setPlaylist(playlistJS[0]);
-        setSongs(playlistJS);
+        let id = match.params.id; ///album/:id
+        let data = await fetch(`/album/${id}`);
+        let dataJS = await data.json();
+        console.log(dataJS);
+        setAlbum(dataJS[0][0]);
+        setSongs(dataJS[0]);
+        setArtists(Array.isArray(dataJS[2]) ? dataJS[2] : [dataJS[2]]);
     } 
 
     useEffect(() => {
         fetchData();
     }, []);
-    if(playlist !== undefined){
+    if(songs !== undefined && album !== undefined){
     return (
        <div className='up-space' key="list-wrapper">
-         <div key={playlist.name} className="card">
-           <img src={playlist.cover_img} height="100px" width="100px"/>
-             <p>{playlist.name}</p>
-             <p>Created at: {playlist.created_at}</p>
-             {songs.map(item => <div key={item.song_id}>{item.title}</div>)}
+         <div key={album.name} className="card">
+           <img src={album.cover_img} height="100px" width="100px"/>
+             <p>songs in album:</p>
+             <ul>
+               {songs.map(song =><li key={song.id}>{song.title}</li>)}
+             </ul>
+             <p>Artists in album: </p>
+             {artists.map((artist, i) => <p key={i}>{artist.name}</p>)}
          </div>
        </div>
     )}

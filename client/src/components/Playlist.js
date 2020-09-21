@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import {Link} from 'react-router-dom';
 import "../App.css";
 
 function Playlist({ match }) {

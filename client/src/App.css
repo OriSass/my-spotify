@@ -44,7 +44,7 @@
 .card{
   width: 80%;
   font-size: 30px;
-  margin: 0 20px;
+  margin: auto;
   display: flex;
   justify-content: center;
   align-items: center;

@@ -8,13 +8,15 @@ function Homepage() {
     const [playlists, setPlaylists] = useState([]);
 
     const fetchData = async () => {
-        let songsData = await fetch('/top_songs')
+        let songsData = await fetch('/api/songs/top_20')
         let songsJS = await songsData.json();
-        let artistsData = await fetch('/top_artists');
+        //console.log(songsJS);
+        let artistsData = await fetch('/api/artists/top_20');
         let artistsJS = await artistsData.json();
-        let albumsData = await fetch('/top_albums');
+        //console.log(artistsJS);
+        let albumsData = await fetch('/api/albums/top_20');
         let albumsJS = await albumsData.json();
-        let playlistsData = await fetch('/top_playlists');
+        let playlistsData = await fetch('/api/playlists/top_20');
         let playlistsJS = await playlistsData.json();
         playlistsJS = Array.isArray(playlistsJS) === false ? [playlistsJS] : playlistsJS;
         setSongs(songsJS);
@@ -25,14 +27,18 @@ function Homepage() {
 
     useEffect(() => {
         fetchData();
+        console.log(songs);
     }, []);
   return ( 
+    <>
+    {playlists.length > 0 && 
     <div className='up-space' key="content">
-      {songs.length > 0 && <MyCarousel dataType="songs" data={songs}/> }
-      {artists.length > 0 && <MyCarousel dataType="artists" data={artists}/> }
-      {albums.length > 0 && <MyCarousel dataType="albums" data={albums}/> }
-      {playlists.length > 0 &&  <MyCarousel dataType="playlists" data={playlists}/> } 
-    </div>
+      <MyCarousel dataType="songs" data={songs}/> 
+      <MyCarousel dataType="artists" data={artists}/> 
+      <MyCarousel dataType="albums" data={albums}/> 
+      <MyCarousel dataType="playlists" data={playlists}/> 
+    </div>}
+    </>
         
       
   );

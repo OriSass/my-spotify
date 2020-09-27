@@ -10,12 +10,12 @@ function Album({ match }) {
     const [albumId, setAlbumId] = useState(match.params.id);
     
     const fetchData = async () => {
-        let data = await fetch(`/album/${albumId}`);
+        let data = await fetch(`/api/albums/${albumId}`);
         let dataJS = await data.json();
         console.log(dataJS);
-        setAlbum(dataJS[0][0]);
-        setSongs(dataJS[0]);
-        setArtists(Array.isArray(dataJS[2]) ? dataJS[2] : [dataJS[2]]);
+        setAlbum(dataJS);
+        setSongs(dataJS.Songs);
+        setArtists(dataJS.Artists);
     } 
 
     useEffect(() => {
@@ -25,7 +25,7 @@ function Album({ match }) {
     return (
        <div className='up-space' key="list-wrapper">
          <div key={album.name} className="card">
-           <img src={album.cover_img} height="100px" width="100px"/>
+           <img src={album.coverImg} height="100px" width="100px"/>
              <p>songs in album:</p>
              <ul>
                {songs.map(song =><li key={song.id}><Link to={`/song/${song.id}?album=${albumId}`}>{song.title}</Link></li>)}

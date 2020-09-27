@@ -9,10 +9,10 @@ function Song({ match, location }) {
  
 
     const fetchData = async () => {
-        let data = await fetch(`/song/${songId}`);
+        let data = await fetch(`/api/songs/${songId}`);
         let dataJS = await data.json();
-        console.log(dataJS[0][0]);
-        setSong(dataJS[0][0]);
+        console.log(dataJS);
+        setSong(dataJS);
         fetchSideSongs();
     } 
     const fetchSideSongs = async () => {   
@@ -34,11 +34,10 @@ function Song({ match, location }) {
         }
         if(origin !== undefined){
             console.log('origin: ' + origin.table + ' ' + origin.id);
-            let data = await fetch(`/${origin.table}/${origin.id}/`);
+            let data = await fetch(`/api/songs/${songId}/sideList/${origin.table}/${origin.id}/`);
             let dataJS = await data.json();
             console.log(dataJS);
-            origin.table === "playlist" ? setSideSongs(dataJS) :
-            setSideSongs(dataJS[resultIndex]);
+            setSideSongs(dataJS);
         }
     }
 
@@ -51,12 +50,12 @@ function Song({ match, location }) {
          <div key={songId} className="card">
             <header>{song.title}</header><br></br>
            <iframe width="560px" height="315px"
-                   src={`https://www.youtube.com/embed${song.embedded_link}`}
+                   src={`https://www.youtube.com/embed${song.youtubeLink}`}
                    frameBorder="0" allow="accelerometer; autoplay;
                    clipboard-write; encrypted-media; gyroscope;
                    picture-in-picture" allowFullScreen></iframe>
                    <br></br>
-           <img src={song.img} height="100px" width="100px"/>
+           <img src={song.Album.coverImg} height="100px" width="100px"/>
              <p>length: {Math.floor(song.length / 60)} : {song.length % 60}</p>
              <p>Lyrics:</p>
              <p>{song.lyrics}</p>

@@ -30,6 +30,7 @@ function MyCarousel(props) {
 
     useEffect(() => {
         setData(props.data);
+        //console.log(`datatype: \n${props.dataType} props data:\n${props.data}`)
         setDataType(props.dataType);
     }, []);
 

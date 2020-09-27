@@ -9,10 +9,11 @@
   },
   "test": {
     "username": "root",
-    "password": null,
-    "database": "database_test",
+    "password": "kalia123",
+    "database": "test-db",
     "host": "127.0.0.1",
-    "dialect": "mysql"
+    "dialect": "mysql",
+    "define": {"underscored": true, "timestamps": false}
   },
   "production": {
     "username": "root",

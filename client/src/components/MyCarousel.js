@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import Carousel from 'react-multi-carousel';
-import 'react-multi-carousel/lib/styles.css'
+import '../../node_modules/react-multi-carousel/lib/styles.css';
 import Card from './Card';
 
 function MyCarousel(props) {
@@ -30,6 +30,7 @@ function MyCarousel(props) {
 
     useEffect(() => {
         setData(props.data);
+        //console.log(`datatype: \n${props.dataType} props data:\n${props.data}`)
         setDataType(props.dataType);
     }, []);
 

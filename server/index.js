@@ -66,6 +66,7 @@ app.get('/top_:tableName', (request,response)=>{
         response.send(results[0]);
     }) 
 });
+
 app.post('/:tableName', (request,response) => {
     let table = request.params.tableName;
     let data = request.body;

@@ -1,5 +1,7 @@
 import React, {useEffect, useState} from 'react';
+import {useLocation} from 'react-router-dom';
 import MyCarousel from './MyCarousel';
+import {Mixpanel} from '../Analytics/AnalyticsManager';
 
 function Homepage() {
 
@@ -10,6 +12,7 @@ function Homepage() {
     const [artists, setArtists] = useState([]);
     const [albums, setAlbums] = useState([]);
     const [playlists, setPlaylists] = useState([]);
+    const location = useLocation().pathname;
 
     
     const fetchData = async () => {
@@ -32,6 +35,7 @@ function Homepage() {
         verifyUser();
         fetchData();
         console.log(songs);
+        Mixpanel.track("path changed", {path: location});
     }, []);
   return ( 
     <>

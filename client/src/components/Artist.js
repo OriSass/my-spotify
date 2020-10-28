@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import "../App.css";
+import {Mixpanel} from '../Analytics/AnalyticsManager';
 
 function Artist({ match }) {
 
@@ -20,6 +21,7 @@ function Artist({ match }) {
 
     useEffect(() => {
         fetchData();
+        Mixpanel.track("reached artist", {artistId: match.params.id});
     }, []);
     if(songs !== undefined && albums !== undefined && artist !== undefined){
     return (

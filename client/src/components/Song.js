@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import "../App.css";
+import {Mixpanel} from '../Analytics/AnalyticsManager';
 
 function Song({ match, location }) {
 
@@ -43,6 +44,7 @@ function Song({ match, location }) {
 
     useEffect(() => {
         fetchData();
+        Mixpanel.track("reached song", {songId: match.params.id});
     }, []);
     if(song !== undefined){
     return (

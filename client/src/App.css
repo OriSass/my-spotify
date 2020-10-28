@@ -87,6 +87,16 @@ p{
   display: flex;
   flex-direction: row;
 }
+.errStyle{
+  color: red;
+  font-weight: 400;
+  font-size: large;
+}
+.login{
+  margin-top: 100px;
+  margin-bottom: 100px;
+  padding: 50px;
+}
 li{
   list-style: none;
 }

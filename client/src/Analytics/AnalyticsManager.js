@@ -1,6 +1,7 @@
+require('dotenv').config();
 var mixpanel = require('mixpanel-browser');
 
-mixpanel.init("9bff33567c59792a4b5aa811850025ee");
+mixpanel.init(process.env.MIXPANEL_ID);
 
 const actions = { track: (eventName, props) => {
     mixpanel.track(eventName, props);

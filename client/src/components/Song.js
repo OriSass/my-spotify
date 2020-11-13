@@ -44,7 +44,7 @@ function Song({ match, location }) {
 
     useEffect(() => {
         fetchData();
-        Mixpanel.track("reached song", {songId: match.params.id});
+        //Mixpanel.track("reached song", {songId: match.params.id});
     }, []);
     if(song !== undefined){
     return (

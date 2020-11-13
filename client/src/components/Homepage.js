@@ -35,7 +35,7 @@ function Homepage() {
         verifyUser();
         fetchData();
         console.log(songs);
-        Mixpanel.track("path changed", {path: location});
+       // Mixpanel.track("path changed", {path: location});
     }, []);
   return ( 
     <>

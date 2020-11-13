@@ -21,7 +21,7 @@ function Artist({ match }) {
 
     useEffect(() => {
         fetchData();
-        Mixpanel.track("reached artist", {artistId: match.params.id});
+        //Mixpanel.track("reached artist", {artistId: match.params.id});
     }, []);
     if(songs !== undefined && albums !== undefined && artist !== undefined){
     return (

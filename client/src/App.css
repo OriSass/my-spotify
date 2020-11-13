@@ -100,3 +100,19 @@ p{
 li{
   list-style: none;
 }
+.search-header{
+  font-size: 3em;
+  margin: 10px;
+  padding-top: 25px;;
+}
+.search-input{
+  margin:20px;
+
+}
+.search-results{
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* justify-content: center; */
+}

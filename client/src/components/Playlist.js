@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import MyCarousel from "./MyCarousel";
 import "../App.css";
 
 function Playlist({ match }) {
@@ -21,18 +21,17 @@ function Playlist({ match }) {
     if(playlist !== undefined){
     return (
        <div className='up-space' key="list-wrapper">
-         <div key={playlist.name} className="card">
-           <img src={playlist.coverImg} height="100px" width="100px"/>
-             <p>{playlist.name}</p>
+         <div key={playlist.name}>
+             <h1>{playlist.name}</h1>
+           <img src={playlist.coverImg} height="200px" width="200px"/>
+         </div>
+         <div>
              <p>Created at: {playlist.createdAt.split('T')[0]}</p>
-             {songs.map(song => {
-               return (
-                  <div key={song.id}>
-                      <Link to={`/song/${song.id}?playlist=${match.params.id}`}>
-                          {song.title}
-                      </Link>
-                  </div>
-              )})}
+             {songs.length > 0 ? (
+            <MyCarousel dataType="songs" data={songs} />
+          ) : (
+            <></>
+          )}
          </div>
        </div>
     )}

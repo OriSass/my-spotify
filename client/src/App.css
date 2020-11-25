@@ -1,6 +1,9 @@
 .App {
+  padding-top: 20px;
+  margin-top: 30px;
   text-align: center;
   color:white;
+  height: 150vh;
   background: rgb(0,0,0);
   background: linear-gradient(0deg, rgba(0,0,0,1) 0%,
                                     rgba(40,40,46,1) 35%,
@@ -47,7 +50,7 @@ a:hover { text-decoration: none; color:white; }
   }
 }
 .carousel{
-  width: 80%;
+  width: 65%;
   display: flex;
   flex-direction: row;
   margin:auto;
@@ -61,7 +64,6 @@ a:hover { text-decoration: none; color:white; }
 .card{
   width: 80%;
   font-size: 10px;
-  /* margin: auto; */
   padding: 0px;
   display: flex;
   justify-content: center;

@@ -45,19 +45,17 @@ function MyCarousel(props) {
              <Carousel 
              swipeable={false}
              draggable={false}
-             showDots={true}
              responsive={responsive}
              infinite
              className="carousel">
              {data.map((item, i) => <Card key={i} dataType={slicedType} data={item} />)}
-             
              </Carousel>
             </span>
         </div>
         )
     }
   return (       
-    <div className='up-space' key="content">
+    <div key="content">
       {dataType && data.length > 0 ? masterRender() : <></>}
     </div>
   );

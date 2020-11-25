@@ -29,7 +29,7 @@ function Homepage() {
   return ( 
     <>
     {playlists.length > 0 && 
-    <div className='up-space' key="content">
+    <div key="content">
       <MyCarousel dataType="songs" data={songs}/> 
       <MyCarousel dataType="artists" data={artists}/> 
       <MyCarousel dataType="albums" data={albums}/> 

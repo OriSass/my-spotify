@@ -9,11 +9,9 @@ const { Sequelize } = require('sequelize');
   });
 router.get('/top_20', async(request, response) => {
     const countSongs = await Artist.getSongCount();
-    console.log(countSongs);
     const topArtists = await Artist.findAll({
         limit: 20
     });
-    //console.log(topArtists);
     response.json(countSongs);
 });
 router.get('/:artistId', async(request, response) => {

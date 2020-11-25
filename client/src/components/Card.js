@@ -4,18 +4,16 @@ import { Link } from 'react-router-dom';
 function Card({dataType, data}) {
     
   const render = () => {
-    //console.log(data);
-    //console.log(dataType);
     let imgSrc = dataType === "song" ? data.Album.coverImg : data.coverImg;
     let desc = dataType === "song" ? data.title : data.name;
     return (
       <Link to={`/${dataType}/${data.id}`}>
-        <div key={data.id} className="card">
-            <img alt="" src={imgSrc} height="100px" width="100px"/>
+        <span key={data.id} className="card">
+            <img className="carousel-img" alt="" src={imgSrc} height="100px" width="100px"/>
             <p>{desc}</p>
             {dataType === "artist" && renderArtist()}
             {dataType === "playlist" && renderPlaylist()}
-        </div>
+        </span>
       </Link>
     );
  }

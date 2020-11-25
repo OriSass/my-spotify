@@ -11,7 +11,6 @@ function Playlist({ match }) {
         let id = match.params.id;
         let playlistData = await fetch(`/api/playlists/${id}`);
         let playlistJS = await playlistData.json();
-        console.log(playlistJS);
         setPlaylist(playlistJS);
         setSongs(playlistJS.Songs);
     } 

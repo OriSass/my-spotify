@@ -46,10 +46,23 @@ a:hover { text-decoration: none; color:white; }
     transform: rotate(360deg);
   }
 }
+.carousel{
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  margin:auto;
+}
+.carousel-img{
+  height:100px;
+  width:100px;
+  padding: 0px;
+  margin: 0px;
+}
 .card{
   width: 80%;
-  font-size: 30px;
-  margin: auto;
+  font-size: 10px;
+  /* margin: auto; */
+  padding: 0px;
   display: flex;
   justify-content: center;
   align-items: center;

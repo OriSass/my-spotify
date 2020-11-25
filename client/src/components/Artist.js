@@ -12,7 +12,6 @@ function Artist({ match }) {
         let id = match.params.id; 
         let data = await fetch(`/api/artists/${id}`);
         let dataJS = await data.json();
-        console.log(dataJS);
         setArtist(dataJS);
         setAlbums(dataJS.Albums);
         setSongs(dataJS.Songs);

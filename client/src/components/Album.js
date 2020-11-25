@@ -12,7 +12,6 @@ function Album({ match }) {
     const fetchData = async () => {
         let data = await fetch(`/api/albums/${albumId}`);
         let dataJS = await data.json();
-        console.log(dataJS);
         setAlbum(dataJS);
         setSongs(dataJS.Songs);
         setArtists(dataJS.Artists);

@@ -10,15 +10,6 @@ function NavBar() {
           <Link to="/">
             <li className="nav-bar-item">Home</li>
           </Link>
-          <Link to="/song">
-            <li className="nav-bar-item">Song</li>
-          </Link>
-          <Link to="/artist">
-            <li className="nav-bar-item">Artist</li>
-          </Link>
-          <Link to="/playlist">
-            <li className="nav-bar-item">Playlist</li>
-          </Link>
       </ul>
       </Switch>
     </div>

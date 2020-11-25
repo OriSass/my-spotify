@@ -12,7 +12,6 @@ router.get('/:albumId', async(request, response) => {
         where: { id: albumId },
         include: [{ model: Song }, { model: Artist}]
     });
-    console.log(album);
     response.json(album);
 });
 module.exports = router;

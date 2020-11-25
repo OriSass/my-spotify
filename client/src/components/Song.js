@@ -11,7 +11,6 @@ function Song({ match, location }) {
     const fetchData = async () => {
         let data = await fetch(`/api/songs/${songId}`);
         let dataJS = await data.json();
-        console.log(dataJS);
         setSong(dataJS);
         fetchSideSongs();
     } 
@@ -33,10 +32,8 @@ function Song({ match, location }) {
             origin = {table: 'song', id: qParams.get('top_songs')}; 
         }
         if(origin !== undefined){
-            console.log('origin: ' + origin.table + ' ' + origin.id);
             let data = await fetch(`/api/songs/${songId}/sideList/${origin.table}/${origin.id}/`);
             let dataJS = await data.json();
-            console.log(dataJS);
             setSideSongs(dataJS);
         }
     }

@@ -70,7 +70,6 @@ app.get('/top_:tableName', (request,response)=>{
 app.post('/:tableName', (request,response) => {
     let table = request.params.tableName;
     let data = request.body;
-    //console.log(data);
     mysqlCon.query(`INSERT INTO ${table}s SET ?;`,data,(error, results, fields)=> {
         if (error) {
             response.send (error.message);

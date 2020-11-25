@@ -10,10 +10,8 @@ function Homepage() {
     const fetchData = async () => {
         let songsData = await fetch('/api/songs/top_20')
         let songsJS = await songsData.json();
-        //console.log(songsJS);
         let artistsData = await fetch('/api/artists/top_20');
         let artistsJS = await artistsData.json();
-        //console.log(artistsJS);
         let albumsData = await fetch('/api/albums/top_20');
         let albumsJS = await albumsData.json();
         let playlistsData = await fetch('/api/playlists/top_20');
@@ -27,7 +25,6 @@ function Homepage() {
 
     useEffect(() => {
         fetchData();
-        console.log(songs);
     }, []);
   return ( 
     <>

@@ -1,19 +1,25 @@
 import React, {useEffect, useState} from 'react';
+import {useLocation} from 'react-router-dom';
 import MyCarousel from './MyCarousel';
+import {Mixpanel} from '../Analytics/AnalyticsManager';
 
 function Homepage() {
+
+    const verifyUser = () =>{
+    
+    }
     const [songs, setSongs] = useState([]);
     const [artists, setArtists] = useState([]);
     const [albums, setAlbums] = useState([]);
     const [playlists, setPlaylists] = useState([]);
+    const location = useLocation().pathname;
 
+    
     const fetchData = async () => {
         let songsData = await fetch('/api/songs/top_20')
         let songsJS = await songsData.json();
-        //console.log(songsJS);
         let artistsData = await fetch('/api/artists/top_20');
         let artistsJS = await artistsData.json();
-        //console.log(artistsJS);
         let albumsData = await fetch('/api/albums/top_20');
         let albumsJS = await albumsData.json();
         let playlistsData = await fetch('/api/playlists/top_20');
@@ -26,8 +32,10 @@ function Homepage() {
     }
 
     useEffect(() => {
+        verifyUser();
         fetchData();
         console.log(songs);
+       // Mixpanel.track("path changed", {path: location});
     }, []);
   return ( 
     <>

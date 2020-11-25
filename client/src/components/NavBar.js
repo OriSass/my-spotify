@@ -1,6 +1,8 @@
 import React from 'react';
 import {Switch, Link} from 'react-router-dom';
-import "../App.css"
+import SearchBar from './SearchBar.js';
+import "../App.css";
+
 function NavBar() {
   return (
      
@@ -19,7 +21,13 @@ function NavBar() {
           <Link to="/playlist">
             <li className="nav-bar-item">Playlist</li>
           </Link>
+          <Link to="/search">
+            <li className="nav-bar-item">
+              Search
+            </li>
+          </Link>
       </ul>
+      
       </Switch>
     </div>
     

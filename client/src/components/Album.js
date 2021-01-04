@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import MyCarousel from "./MyCarousel";
-import { Link } from 'react-router-dom';
 import "../App.css";
 
 function Album({ match }) {

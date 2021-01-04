@@ -38,6 +38,7 @@ router.get('/:songId/sideList/:origin/:originId', async(request, response) => {
         case 'playlist': const playlist = await Playlist.findOne({where: {id: originId}, include: Song });
                         response.json(playlist.Songs);
           break;
+        default: response.status(404).send(`Didn't find no songs..`)
     }
 });
 module.exports = router;

@@ -12,13 +12,12 @@ function Artist({ match }) {
     let data = await fetch(`/api/artists/${id}`);
     let dataJS = await data.json();
     setArtist(dataJS);
-    console.log(dataJS);
     setAlbums(dataJS.Albums);
     setSongs(dataJS.Songs);
   };
 
   useEffect(() => {
-    fetchData();
+    fetchData()
   }, []);
   if (songs.length > 0 && albums.length > 0 && artist !== undefined) {
     return (

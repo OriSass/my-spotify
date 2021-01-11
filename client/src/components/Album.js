@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import MyCarousel from "./MyCarousel";
 import "../App.css";
 
 function Album({ match }) {
@@ -12,7 +12,6 @@ function Album({ match }) {
     const fetchData = async () => {
         let data = await fetch(`/api/albums/${albumId}`);
         let dataJS = await data.json();
-        console.log(dataJS);
         setAlbum(dataJS);
         setSongs(dataJS.Songs);
         setArtists(dataJS.Artists);
@@ -24,15 +23,23 @@ function Album({ match }) {
     if(songs !== undefined && album !== undefined){
     return (
        <div className='up-space' key="list-wrapper">
-         <div key={album.name} className="card">
-           <img src={album.coverImg} height="100px" width="100px"/>
-             <p>songs in album:</p>
-             <ul>
-               {songs.map(song =><li key={song.id}><Link to={`/song/${song.id}?album=${albumId}`}>{song.title}</Link></li>)}
-             </ul>
-             <p>Artists in album: </p>
-             {artists.map((artist, i) => <p key={i}>{artist.name}</p>)}
-         </div>
+         <div key={album.name}>
+            <h1>{album.name}</h1>
+           <img src={album.coverImg} height="200px" width="200px"/>
+          </div>
+            <div>
+            {artists.length > 0 ? (
+            <MyCarousel dataType="artists" data={artists} />
+          ) : (
+            <></>
+          )}
+          {songs.length > 0 ? (
+            <MyCarousel dataType="songs" data={songs} />
+          ) : (
+            <></>
+          )}
+            </div>
+         
        </div>
     )}
     else return(<></>);

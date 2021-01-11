@@ -34,13 +34,11 @@ function Homepage() {
     useEffect(() => {
         verifyUser();
         fetchData();
-        console.log(songs);
-       // Mixpanel.track("path changed", {path: location});
     }, []);
   return ( 
     <>
     {playlists.length > 0 && 
-    <div className='up-space' key="content">
+    <div key="content">
       <MyCarousel dataType="songs" data={songs}/> 
       <MyCarousel dataType="artists" data={artists}/> 
       <MyCarousel dataType="albums" data={albums}/> 

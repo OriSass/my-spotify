@@ -7,6 +7,8 @@ import Album from './components/Album';
 import Artist from './components/Artist';
 import Song from './components/Song';
 import NotFoundPage from './components/NotFoundPage';
+import Login from './components/Login';
+import SearchPage from './components/SearchPage';
 
 function App() {
     
@@ -20,6 +22,8 @@ function App() {
         <Route path="/album/:id" exact component={Album}/>
         <Route path="/artist/:id" exact component={Artist}/>
         <Route path="/song/:id" exact component={Song}/>
+        <Route path="/login" exact component={Login}/>
+        <Route path="/search" exact component={SearchPage}/>
         <Route path="*" component={NotFoundPage} />
       </Switch>
     </Router>

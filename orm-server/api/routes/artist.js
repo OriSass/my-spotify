@@ -28,6 +28,7 @@ router.get("/:artistId", async (request, response) => {
     ],
   });
   response.json(artist);
+
 });
 
 module.exports = router;

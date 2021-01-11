@@ -102,6 +102,32 @@ p{
   display: flex;
   flex-direction: row;
 }
+.errStyle{
+  color: red;
+  font-weight: 400;
+  font-size: large;
+}
+.login{
+  margin-top: 100px;
+  margin-bottom: 100px;
+  padding: 50px;
+}
 li{
   list-style: none;
+}
+.search-header{
+  font-size: 3em;
+  margin: 10px;
+  padding-top: 25px;;
+}
+.search-input{
+  margin:20px;
+
+}
+.search-results{
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* justify-content: center; */
 }

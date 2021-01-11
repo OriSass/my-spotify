@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import MyCarousel from "./MyCarousel";
 import "../App.css";
+import {Mixpanel} from '../Analytics/AnalyticsManager';
 
 function Artist({ match }) {
   const [artist, setArtist] = useState();
@@ -15,6 +16,7 @@ function Artist({ match }) {
     setAlbums(dataJS.Albums);
     setSongs(dataJS.Songs);
   };
+
 
   useEffect(() => {
     fetchData()

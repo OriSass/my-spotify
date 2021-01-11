@@ -1,6 +1,8 @@
 import React from 'react';
 import {Switch, Link} from 'react-router-dom';
-import "../App.css"
+import SearchBar from './SearchBar.js';
+import "../App.css";
+
 function NavBar() {
   return (
      
@@ -11,6 +13,7 @@ function NavBar() {
             <li className="nav-bar-item">Home</li>
           </Link>
       </ul>
+      
       </Switch>
     </div>
     

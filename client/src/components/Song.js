@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../App.css";
+import {Mixpanel} from '../Analytics/AnalyticsManager';
 
 function Song({ match, location }) {
   const [song, setSong] = useState();

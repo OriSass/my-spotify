@@ -13,6 +13,34 @@ router.get('/top_20', async(request, response) => {
     });
     response.json(topSongs);
 });
+// router.get("/migrate-songs", async (req, res) => {
+//     try {
+//       const allSongs = await Song.findAll({
+//         include: [
+//           {
+//             model: Artist,
+//             attributes: ["name"],
+//           },
+//           {
+//             model: Album,
+//             attributes: ["name"],
+//           },
+//         ],
+//       });
+//       const body = allSongs.flatMap((doc) => [
+//         { index: { _index: "songs" } },
+//         doc,
+//       ]);
+//       const { body: bulkResponse } = await client.bulk({ refresh: true, body });
+//       if (bulkResponse.errors) {
+//         return res.json(bulkResponse.errors);
+//       }
+//       const { body: count } = await client.count({ index: "songs" });
+//       res.send(count);
+//     } catch (e) {
+//       res.json({ error: e.message });
+//     }
+//   });
 
 router.get('/:songId', async(request, response) => {
     const { songId } = request.params;
@@ -41,4 +69,6 @@ router.get('/:songId/sideList/:origin/:originId', async(request, response) => {
         default: response.status(404).send(`Didn't find no songs..`)
     }
 });
+
+  
 module.exports = router;

@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "kalia123",
+    "password": "xCaliber73",
     "database": "music",
     "host": "127.0.0.1",
     "dialect": "mysql",
@@ -9,7 +9,7 @@
   },
   "test": {
     "username": "root",
-    "password": "kalia123",
+    "password": "xCaliber73",
     "database": "test-db",
     "host": "127.0.0.1",
     "dialect": "mysql",

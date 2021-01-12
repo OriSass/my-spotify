@@ -2,34 +2,42 @@ import React, { useEffect, useState } from "react";
 import "../App.css";
 import {Mixpanel} from '../Analytics/AnalyticsManager';
 
-function Song({ match, location }) {
+function Song({ match, location
+  // , origin
+ }) {
   const [song, setSong] = useState();
   const [songId, setSongId] = useState(match.params.id);
   const [sideSongs, setSideSongs] = useState([]);
+  // const [userOrigin, setUserOrigin] = useState(origin);
 
   const fetchData = async () => {
     let data = await fetch(`/api/songs/${songId}`);
     let dataJS = await data.json();
     setSong(dataJS);
+    console.log("Starting side list fetch");
     fetchSideSongs();
   };
   const fetchSideSongs = async () => {
-    const qParams = new URLSearchParams(location.search);
+    // console.log(userOrigin);
+    console.log(location);
+    const searchParams = location.search;
+    console.log(searchParams);
     let origin;
     let resultIndex = 0;
-    if (qParams.get("album") !== null) {
-      origin = { table: "album", id: qParams.get("album") };
+    if (searchParams.includes("album")) {
+      origin = { table: "album", id: searchParams[searchParams.length - 1] };
     }
-    if (qParams.get("playlist") !== null) {
-      origin = { table: "playlist", id: qParams.get("playlist") };
+    else if (searchParams.includes("playlist")) {
+      origin = { table: "playlist", id: searchParams[searchParams.length - 1] };
     }
-    if (qParams.get("artist") !== null) {
-      origin = { table: "artist", id: qParams.get("artist") };
+    else if (searchParams.includes("artist")) {
+      origin = { table: "artist", id: searchParams[searchParams.length - 1] };
       resultIndex = 4;
     }
-    if (qParams.get("top_songs") !== null) {
-      origin = { table: "song", id: qParams.get("top_songs") };
+    else if (searchParams.includes("top_songs")) {
+      origin = { table: "song", id: searchParams[searchParams.length - 1] };
     }
+    console.log("origin is: " + origin);
     if (origin !== undefined) {
       let data = await fetch(
         `/api/songs/${songId}/sideList/${origin.table}/${origin.id}/`

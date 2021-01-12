@@ -42,15 +42,9 @@ router.get('/top_20', async(request, response) => {
 //     }
 //   });
 
-router.get('/:songId', async(request, response) => {
-    const { songId } = request.params;
-    const song = await Song.findOne({
-         where: { id: songId},
-         include: { model: Album, attributes: ["coverImg"] }
-        });
-    response.json(song); 
-});
+
 router.get('/:songId/sideList/:origin/:originId', async(request, response) => {
+    console.log('=============================================');
     const { origin } = request.params;
     const { originId } = request.params;
     switch (origin) {
@@ -69,6 +63,13 @@ router.get('/:songId/sideList/:origin/:originId', async(request, response) => {
         default: response.status(404).send(`Didn't find no songs..`)
     }
 });
-
+router.get('/:songId', async(request, response) => {
+    const { songId } = request.params;
+    const song = await Song.findOne({
+         where: { id: songId},
+         include: { model: Album, attributes: ["coverImg"] }
+        });
+    response.json(song); 
+});
   
 module.exports = router;

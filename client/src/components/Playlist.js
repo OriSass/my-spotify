@@ -28,7 +28,7 @@ function Playlist({ match }) {
          <div>
              <p>Created at: {playlist.createdAt.split('T')[0]}</p>
              {songs.length > 0 ? (
-            <MyCarousel dataType="songs" data={songs} />
+            <MyCarousel dataType="songs" data={songs} origin="playlist" />
           ) : (
             <></>
           )}

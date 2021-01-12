@@ -35,7 +35,7 @@ function Artist({ match }) {
             <></>
           )}
           {songs.length > 0 ? (
-            <MyCarousel dataType="songs" data={songs} />
+            <MyCarousel dataType="songs" data={songs} origin="artist" />
           ) : (
             <></>
           )}

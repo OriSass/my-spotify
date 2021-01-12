@@ -8,6 +8,7 @@ function MyCarousel(props) {
     
     const [data, setData] = useState([]);
     const [dataType, setDataType] = useState();
+    const [userOrigin, setUserOrigin] = useState(props.origin);
 
     const responsive = {
         superLargeDesktop: {
@@ -48,7 +49,7 @@ function MyCarousel(props) {
              responsive={responsive}
              infinite
              className="carousel">
-             {data.map((item, i) => <Card key={i} dataType={slicedType} data={item} />)}
+             {data.map((item, i) => <Card key={i} dataType={slicedType} data={item} origin={userOrigin} />)}
              </Carousel>
             </span>
         </div>

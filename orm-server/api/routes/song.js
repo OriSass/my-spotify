@@ -51,15 +51,24 @@ router.get('/:songId/sideList/:origin/:originId', async(request, response) => {
         case 'song': const topSongs = await Song.findAll({limit: 20});
                      response.json(topSongs);
             break;
-        case 'artist': const artist = await Artist.findOne({ where: {id: originId}, include: Song });
-                        response.json(artist.Songs);
+        case 'artist': const artist = await Song.findAll({ where: {artist: originId}, include: [{model: Album},{model:Artist}] });
+                        response.json(artist);
           break;
-        case 'album': const album = await Album.findOne({where: {id: originId}, include: Song });
-                        response.json(album.Songs);
+        case 'album': const album = await Song.findAll({where: {album: originId}, include: [{model: Album},{model:Artist}] });
+                        response.json(album);
           break;
-        case 'playlist': const playlist = await Playlist.findOne({where: {id: originId}, include: Song });
+        case 'playlist': const playlist = await Playlist.findOne({where: {id: originId}, include: {model: Song, include: [{model: Album},{model:Artist}] }});
                         response.json(playlist.Songs);
           break;
+        // case 'artist': const artist = await Artist.findOne({ where: {id: originId}, include: Song });
+        //                 response.json(artist.Songs);
+        //   break;
+        // case 'album': const album = await Album.findOne({where: {id: originId}, include: Song });
+        //                 response.json(album.Songs);
+        //   break;
+        // case 'playlist': const playlist = await Playlist.findOne({where: {id: originId}, include: Song });
+        //                 response.json(playlist.Songs);
+        //   break;
         default: response.status(404).send(`Didn't find no songs..`)
     }
 });

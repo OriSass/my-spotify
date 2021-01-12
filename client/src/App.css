@@ -131,3 +131,20 @@ li{
   align-items: center;
   /* justify-content: center; */
 }
+
+.song-page-wrapper{
+  padding-top: 20px;
+  margin-top: 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.side-song-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  /* border: #000; */
+  border-color: #000;
+  border-style: dashed;
+}

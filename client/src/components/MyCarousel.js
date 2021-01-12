@@ -33,6 +33,7 @@ function MyCarousel(props) {
     useEffect(() => {
         setData(props.data);
         setDataType(props.dataType);
+        console.log("My Carousel origin: " +props.origin);
     }, []);
 
     const masterRender = () => {
@@ -49,7 +50,9 @@ function MyCarousel(props) {
              responsive={responsive}
              infinite
              className="carousel">
-             {data.map((item, i) => <Card key={i} dataType={slicedType} data={item} origin={userOrigin} />)}
+             {data.map((item, i) => <Card key={i} dataType={slicedType} data={item}
+              origin={userOrigin}
+               />)}
              </Carousel>
             </span>
         </div>

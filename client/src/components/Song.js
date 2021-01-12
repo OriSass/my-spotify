@@ -1,27 +1,22 @@
 import React, { useEffect, useState } from "react";
+import SideList from "./SideList";
 import "../App.css";
-import {Mixpanel} from '../Analytics/AnalyticsManager';
 
-function Song({ match, location
-  // , origin
- }) {
+
+function Song({ match, location }) {
   const [song, setSong] = useState();
   const [songId, setSongId] = useState(match.params.id);
   const [sideSongs, setSideSongs] = useState([]);
-  // const [userOrigin, setUserOrigin] = useState(origin);
+  const [userOrigin, setUserOrigin] = useState();
 
   const fetchData = async () => {
     let data = await fetch(`/api/songs/${songId}`);
     let dataJS = await data.json();
     setSong(dataJS);
-    console.log("Starting side list fetch");
     fetchSideSongs();
   };
   const fetchSideSongs = async () => {
-    // console.log(userOrigin);
-    console.log(location);
     const searchParams = location.search;
-    console.log(searchParams);
     let origin;
     let resultIndex = 0;
     if (searchParams.includes("album")) {
@@ -37,13 +32,12 @@ function Song({ match, location
     else if (searchParams.includes("top_songs")) {
       origin = { table: "song", id: searchParams[searchParams.length - 1] };
     }
-    console.log("origin is: " + origin);
     if (origin !== undefined) {
+      setUserOrigin(origin);
       let data = await fetch(
         `/api/songs/${songId}/sideList/${origin.table}/${origin.id}/`
       );
       let dataJS = await data.json();
-      console.log(dataJS);
       setSideSongs(dataJS);
     }
   };
@@ -52,9 +46,14 @@ function Song({ match, location
     fetchData();
   }, []);
   if (song !== undefined) {
-    console.log(sideSongs);
     return (
-      <div className="up-space" key="list-wrapper">
+      <div className="song-page-wrapper" key="list-wrapper">
+        
+        {sideSongs.length > 0 ? 
+        <SideList data={sideSongs} origin={userOrigin} />
+        : (
+          <></>
+        )}
         <div key={songId} >
             <div>
               <header>
@@ -77,17 +76,6 @@ function Song({ match, location
             </div>
           
         </div>
-        {sideSongs.length > 0 ? (
-          <div key="side-list-container">
-            <ul key="side-list">
-              {sideSongs.map((song, i) => (
-                <li key={i}>{song.title}</li>
-              ))}
-            </ul>
-          </div>
-        ) : (
-          <></>
-        )}
       </div>
     );
   } else return <></>;

@@ -13,15 +13,19 @@ function MyCarousel(props) {
     const responsive = {
         superLargeDesktop: {
           // the naming can be any, depends on you.
-          breakpoint: { max: 4000, min: 3000 },
+          breakpoint: { max: 3000, min: 1400 },
           items: 5
         },
         desktop: {
-          breakpoint: { max: 3000, min: 1024 },
-          items: 5
+          breakpoint: { max: 1400, min: 1000 },
+          items: 4
+        },
+        laptop: {
+          breakpoint: { max: 1000, min: 704 },
+          items: 3
         },
         tablet: {
-          breakpoint: { max: 1024, min: 464 },
+          breakpoint: { max: 700, min: 464 },
           items: 2
         },
         mobile: {

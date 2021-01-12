@@ -39,7 +39,8 @@ function Homepage() {
     <>
     {playlists.length > 0 && 
     <div key="content">
-      <MyCarousel dataType="songs" data={songs}/> 
+      <MyCarousel dataType="songs" data={songs} origin="song"
+      /> 
       <MyCarousel dataType="artists" data={artists}/> 
       <MyCarousel dataType="albums" data={albums}/> 
       <MyCarousel dataType="playlists" data={playlists}/> 

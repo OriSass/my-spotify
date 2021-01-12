@@ -29,7 +29,7 @@ function Song({ match, location }) {
       origin = { table: "artist", id: searchParams[searchParams.length - 1] };
       resultIndex = 4;
     }
-    else if (searchParams.includes("top_songs")) {
+    else if (searchParams.includes("song")) {
       origin = { table: "song", id: searchParams[searchParams.length - 1] };
     }
     if (origin !== undefined) {
@@ -38,6 +38,7 @@ function Song({ match, location }) {
         `/api/songs/${songId}/sideList/${origin.table}/${origin.id}/`
       );
       let dataJS = await data.json();
+      console.log(dataJS);
       setSideSongs(dataJS);
     }
   };
@@ -45,6 +46,9 @@ function Song({ match, location }) {
   useEffect(() => {
     fetchData();
   }, []);
+  useEffect(() => {
+    console.log(userOrigin);
+  }, [userOrigin]);
   if (song !== undefined) {
     return (
       <div className="song-page-wrapper" key="list-wrapper">

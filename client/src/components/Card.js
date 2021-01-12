@@ -4,11 +4,14 @@ import { Link } from 'react-router-dom';
 function Card({dataType, data, location, origin}) {
     
   const render = () => {
-    console.log("Origin in card id: " + origin);
     let imgSrc = dataType === "song" ? data.Album.coverImg : data.coverImg;
     let desc = dataType === "song" ? data.title : data.name;
     let linkPath = `/${dataType}/${data.id}`;
     if(dataType === "song"){
+      if(origin === "song"){
+        console.log(data);
+        // origin += data.Album.id;
+      }
       if(origin === "album"){
         // console.log(data);
         origin += data.Album.id;

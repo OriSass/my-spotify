@@ -6,9 +6,9 @@ function SideList({ data, origin }) {
   const [userOrigin, setUserOrigin] = useState(origin);
 
   useEffect(() => {
-    console.log(songs);
-    console.log("origin ");
-    console.log(userOrigin);
+    // console.log(songs);
+    // console.log("origin ");
+    // console.log(userOrigin);
   });
   return (
     <div>

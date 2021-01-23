@@ -33,7 +33,7 @@ function SideSong({ data, origin }) {
       applied: true,
     },
   };
-  console.log(linkPath);
+  //   console.log(linkPath);
   const [imgPath, setImgPath] = useState();
   const [artist, setArtist] = useState();
 
@@ -43,7 +43,7 @@ function SideSong({ data, origin }) {
   });
 
   return (
-    <Link to={linkPath}>
+    <Link to={linkPath} replace>
       <div className="side-song-container">
         <div>
           <img width="100px" height="100px" src={imgPath} />

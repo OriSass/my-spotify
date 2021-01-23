@@ -1,7 +1,5 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+"use strict";
+const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Song extends Model {
     /**
@@ -11,25 +9,29 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      this.belongsTo(models.Album, {foreignKey: "album"});
-      this.belongsTo(models.Artist, {foreignKey: "artist"});
-      this.belongsToMany(models.Playlist, {through: 'playlist_songs'});
+      this.belongsTo(models.Album, { foreignKey: "album" });
+      this.belongsTo(models.Artist, { foreignKey: "artist" });
+      this.belongsToMany(models.Playlist, { through: "playlist_songs" });
     }
-  };
-  Song.init({
-    youtubeLink: DataTypes.STRING,
-    album: DataTypes.INTEGER,
-    artist: DataTypes.INTEGER,
-    title: DataTypes.STRING,
-    length: DataTypes.INTEGER,
-    trackNumber: DataTypes.INTEGER,
-    lyrics: DataTypes.TEXT,
-    createdAt: DataTypes.DATE,
-    uploadAt: DataTypes.DATE
-  }, {
-    sequelize,
-    tableName: 'songs',
-    modelName: 'Song',
-  });
+  }
+  Song.init(
+    {
+      id: { type: DataTypes.INTEGER, primaryKey: true },
+      youtubeLink: DataTypes.STRING,
+      album: DataTypes.INTEGER,
+      artist: DataTypes.INTEGER,
+      title: DataTypes.STRING,
+      length: DataTypes.INTEGER,
+      trackNumber: DataTypes.INTEGER,
+      lyrics: DataTypes.TEXT,
+      createdAt: DataTypes.DATE,
+      updatedAt: DataTypes.DATE,
+    },
+    {
+      sequelize,
+      tableName: "songs",
+      modelName: "Song",
+    }
+  );
   return Song;
 };

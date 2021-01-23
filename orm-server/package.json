@@ -6,7 +6,8 @@
   "scripts": {
     "test": "cross-env NODE_ENV=test jest --testTimeout=10000",
     "db:create:test": "cross-env NODE_ENV=test npx sequelize-cli db:create",
-    "dev": "nodemon ."
+    "dev": "nodemon .",
+    "db-init": "npx sequelize db:migrate:undo:all && npx sequelize db:migrate && npx sequelize db:seed:all && npm run dev"
   },
   "jest": {
     "testEnvironment": "node",

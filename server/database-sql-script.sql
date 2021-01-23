@@ -29,7 +29,7 @@ CREATE TABLE `albums` (
   `name` varchar(255) NOT NULL,
   `cover_img` longtext NOT NULL,
   `created_at` date NOT NULL,
-  `upload_at` date NOT NULL,
+  `updated_at` date NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -80,7 +80,7 @@ CREATE TABLE `artists` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `cover_img` longtext NOT NULL,
-  `upload_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -162,7 +162,7 @@ CREATE TABLE `playlists` (
   `name` varchar(45) DEFAULT NULL,
   `cover_img` longtext,
   `created_at` datetime DEFAULT NULL,
-  `upload_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -193,7 +193,7 @@ CREATE TABLE `songs` (
   `track_number` int NOT NULL,
   `lyrics` longtext NOT NULL,
   `created_at` date NOT NULL,
-  `upload_at` date NOT NULL,
+  `updated_at` date NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;

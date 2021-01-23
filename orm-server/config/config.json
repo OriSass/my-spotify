@@ -2,18 +2,18 @@
   "development": {
     "username": "root",
     "password": "xCaliber73",
-    "database": "music",
+    "database": "music-orm",
     "host": "127.0.0.1",
     "dialect": "mysql",
-    "define": {"underscored": true, "timestamps": false}
+    "define": { "underscored": true }
   },
   "test": {
     "username": "root",
     "password": "xCaliber73",
-    "database": "test-db",
+    "database": "music-orm",
     "host": "127.0.0.1",
     "dialect": "mysql",
-    "define": {"underscored": true, "timestamps": false}
+    "define": { "underscored": true }
   },
   "production": {
     "username": "root",

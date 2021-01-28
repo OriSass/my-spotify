@@ -7,6 +7,8 @@
     "test": "cross-env NODE_ENV=test jest --testTimeout=10000",
     "db:create:test": "cross-env NODE_ENV=test npx sequelize-cli db:create",
     "dev": "nodemon .",
+    "seed": "npx sequelize db:seed:undo:all && npx sequelize db:seed:all",
+    "start-app": "npx sequelize db:migrate && npm run seed && node .",
     "db-init": "npx sequelize db:migrate:undo:all && npx sequelize db:migrate && npx sequelize db:seed:all && npm run dev"
   },
   "jest": {
@@ -26,12 +28,12 @@
     "morgan": "^1.10.0",
     "mysql2": "^2.2.5",
     "nodemon": "^2.0.6",
+    "sequelize-cli": "^6.2.0",
     "sequelize": "^6.3.5"
   },
   "devDependencies": {
     "cross-env": "^7.0.2",
     "jest": "^26.4.2",
-    "sequelize-cli": "^6.2.0",
     "supertest": "^4.0.2"
   }
 }

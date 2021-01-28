@@ -10,6 +10,9 @@ COPY /orm-server/package.json /orm-server/package-lock.json ./
 
 RUN npm install --production
 
+# if you encounter bcrypt errors -> replace it with 'bcrypt.js',
+# just npm install it, remove bcrypt and update instances to "require('bcrypt.js')""
+
 # RUN git clone https://github.com/vishnubob/wait-for-it.git
 
 #Change to your Port
@@ -30,3 +33,6 @@ CMD ["npm", "run", "start-app"]
 # "dev": "how you start your server"
 # "spinup": "npm run migrate && npm run dev"
 # "spinupseed": "npm run migrate && npm run undoseed && npm run seed && npm run dev" // for continuesly seeding data
+
+
+

@@ -1,4 +1,3 @@
 node_modules
-./orm-server/node_modules
-./orm-server/.env
+./server/node_modules
 ./client/node_modules
